@@ -4,7 +4,7 @@
 #			page_view=re.findall(('<a href="http://www.douban.com/group/'+group_id+'/discussion?start=(.*?)" >').decode('utf-8').encode('utf-8'), first_group_view, re.DOTALL)
 			#pagenumber=page_view
 #			print 'page_view=',page_view
-
+import ConfigParser
 import re
 import urllib2
 import urllib
@@ -12,14 +12,19 @@ import time
 from mydbV2 import MydbV2
 
 dbV2 = MydbV2()
+conf = ConfigParser.ConfigParser()
+url_index_start=conf.get("douban_group", "url_index_start")
+group_id_start=conf.get("douban_group", "group_id_start")
 
+#douban_group.conf
+conf.read("douban_group.conf")
 for  url_index in xrange(0,6520,20):
 	try:
 		#time.sleep(2)
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
 		print page_url
 		msg=urllib2.urlopen(page_url).read()
-		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
+		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
 		for group_id in group:
 			print group_id.decode('utf-8').encode('utf-8')
 			group_index=0
@@ -28,6 +33,7 @@ for  url_index in xrange(0,6520,20):
 				is_next_page=False
 				#time.sleep(10)
 				group_url='http://www.douban.com/group/'+group_id+'/discussion?start='+str(group_index)
+				print group_url
 				group_view=urllib2.urlopen(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
 				for topic_id in topic:
