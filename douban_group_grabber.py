@@ -11,6 +11,7 @@ import urllib
 import time
 from mydbV2 import MydbV2
 from random import choice
+import random
 
 dbV2 = MydbV2()
 conf = ConfigParser.ConfigParser()
