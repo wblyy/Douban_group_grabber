@@ -43,7 +43,7 @@ class MydbV2(BaseDB):
         self._execute(r'insert ignore cavca_zpk(song, artist, language, producer, rights_owner) '
                       r'values (%s, %s, %s, %s, %s)', (song, artist, language, producer, rights_owner))
     def insert_douban_data(self, word, time, topicId, groupId):
-        self._execute(r'insert ignore douban_group(word, time, topicId, groupId) '
+        self._execute(r'insert ignore douban_group_copy(word, time, topicId, groupId) '
                       r'values (%s, %s, %s, %s)', (word, time, topicId, groupId))    
 
     def insert_song(self, song, artist,album,top):
