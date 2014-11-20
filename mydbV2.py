@@ -37,13 +37,13 @@ class BaseDB(object):
 
 class MydbV2(BaseDB):
     def __init__(self):
-        BaseDB.__init__(self, database='douban')
+        BaseDB.__init__(self, database='douban_group')
 
     def insert_data(self, song, artist, language, producer, rights_owner):
         self._execute(r'insert ignore cavca_zpk(song, artist, language, producer, rights_owner) '
                       r'values (%s, %s, %s, %s, %s)', (song, artist, language, producer, rights_owner))
     def insert_douban_data(self, word, time, topicId, groupId):
-        self._execute(r'insert ignore douban_group_copy(word, time, topicId, groupId) '
+        self._execute(r'insert ignore douban_group(word, time, topicId, groupId) '
                       r'values (%s, %s, %s, %s)', (word, time, topicId, groupId))    
 
     def insert_song(self, song, artist,album,top):
