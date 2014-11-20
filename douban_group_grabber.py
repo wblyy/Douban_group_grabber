@@ -27,8 +27,8 @@ proxy_auth_handler.add_password('realm', 'host', 'username', 'password')
  
 #opener = urllib2.build_opener(proxy_handler, proxy_auth_handler)
 # This time, rather than install the OpenerDirector, we use it directly:
-f = urllib2.build_opener(proxy_handler, proxy_auth_handler).open('http://www.douban.com').read()
-print f
+#f = urllib2.build_opener(proxy_handler, proxy_auth_handler).open('http://www.douban.com').read()
+#print f
 
 #douban_group.conf
 
