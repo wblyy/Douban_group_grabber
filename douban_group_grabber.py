@@ -61,7 +61,7 @@ for  url_index in xrange(url_index_start,6520,20):
 
 				group_view=urllib2.build_opener(proxy_handler, proxy_auth_handler).open(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
-				for topic_id_index in xrange(topic.index(topic_id_start),len(topic)):
+				for topic_id_index in xrange(0,len(topic)):
 					conf.set("douban_group", "topic_id_start", topic[topic_id_index])
 					conf.write(open("douban_group.conf", "w"))  
 
