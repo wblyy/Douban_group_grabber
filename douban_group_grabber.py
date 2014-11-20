@@ -32,6 +32,7 @@ for  url_index in xrange(url_index_start,6520,20):
 		print page_url
 		msg=urllib2.urlopen(page_url).read()
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
+		print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
 			conf.set("douban_group", "group_id_start", group_id_index)
 			conf.write(open("douban_group.conf", "w"))  
