@@ -76,10 +76,18 @@ for  url_index in xrange(url_index_start,6520,20):
 							topic_index=topic_index+100
 							conf.set("douban_group", "topic_index_start", topic_index)
 							conf.write(open("douban_group.conf", "w"))  
+						else:
+							topic_index=0
+							conf.set("douban_group", "topic_index_start", topic_index)
+							conf.write(open("douban_group.conf", "w"))  
 							
 				if len(topic):#抓到的topic数量不为零则翻页
 					is_next_page=True
 					group_index=group_index+25
+					conf.set("douban_group", "group_index_start", group_index)
+					conf.write(open("douban_group.conf", "w"))  
+				else:
+					group_index_start=0
 					conf.set("douban_group", "group_index_start", group_index)
 					conf.write(open("douban_group.conf", "w"))  
 					
