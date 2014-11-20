@@ -34,7 +34,7 @@ for  url_index in xrange(url_index_start,6520,20):
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
 		print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
-			conf.set("douban_group", "group_id_start", group_id_index)
+			conf.set("douban_group", "group_id_start", group[group_id_index])
 			conf.write(open("douban_group.conf", "w"))  
 
 			group_id=group[group_id_index]
@@ -51,8 +51,8 @@ for  url_index in xrange(url_index_start,6520,20):
 
 				group_view=urllib2.urlopen(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
-				for topic_id_index in xrange(0,len(topic)):
-					conf.set("douban_group", "topic_id_start", topic_id_index)
+				for topic_id_index in xrange(topic.index(topic_id_start),len(topic)):
+					conf.set("douban_group", "topic_id_start", topic[topic_id_index])
 					conf.write(open("douban_group.conf", "w"))  
 
 					topic_id=topic[topic_id_index]
