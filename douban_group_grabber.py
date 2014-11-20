@@ -13,11 +13,12 @@ from mydbV2 import MydbV2
 
 dbV2 = MydbV2()
 conf = ConfigParser.ConfigParser()
+conf.read("douban_group.conf")
 url_index_start=conf.get("douban_group", "url_index_start")
 group_id_start=conf.get("douban_group", "group_id_start")
 
 #douban_group.conf
-conf.read("douban_group.conf")
+
 for  url_index in xrange(0,6520,20):
 	try:
 		#time.sleep(2)
