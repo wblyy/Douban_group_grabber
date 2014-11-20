@@ -5,9 +5,9 @@ class BaseDB(object):
     def __init__(self, database=None, user=None, passwd=None, host=None):
         self.database = database if database else 'mysql'
         self.user = user if user else 'root'
-        self.passwd = passwd if passwd else '654321'
+        self.passwd = passwd if passwd else 'doreso1qaz2wsx'
         #self.host = host if host else '114.243.222.166'#不需要输端口号
-        self.host = host if host else '192.168.1.111'
+        self.host = host if host else 'localhost'
 
     @property
     def db(self):

@@ -15,7 +15,7 @@ dbV2 = MydbV2()
 
 for  url_index in xrange(0,6520,20):
 	try:
-		time.sleep(2)
+		#time.sleep(2)
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
 		print page_url
 		msg=urllib2.urlopen(page_url).read()
@@ -48,7 +48,7 @@ for  url_index in xrange(0,6520,20):
 						
 						for index in range (0,len(comment)):
 							#print comment[index].decode('utf-8'),comment_time[index]
-							dbV2.insert_douban_data(comment[index].decode('utf-8'),comment_time[index],topic_id,group_id)
+							#dbV2.insert_douban_data(comment[index].decode('utf-8'),comment_time[index],topic_id,group_id)
 							print 'group_id:',group_id,'group_index:',group_index,'topic_id:',topic_id,'topic_index',topic_index,comment[index].decode('utf-8'),comment_time[index]
 							#http://www.douban.com/group/people/
 						if 'http://www.douban.com/group/people/' in topic_view:
