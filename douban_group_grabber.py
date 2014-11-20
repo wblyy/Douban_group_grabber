@@ -37,7 +37,7 @@ for  url_index in xrange(url_index_start,6520,20):
 			conf.set("douban_group", "group_id_start", group_id_index)
 			conf.write(open("douban_group.conf", "w"))  
 
-			group_id=group(group_id_index)
+			group_id=group[group_id_index]
 			print group_id.decode('utf-8').encode('utf-8')
 			group_index=group_index_start
 			is_next_page=True
