@@ -21,14 +21,14 @@ group_id_start=conf.get("douban_group", "group_id_start")
 topic_id_start=conf.get("douban_group", "topic_id_start")
 group_index_start=int(conf.get("douban_group", "group_index_start"))
 topic_index_start=int(conf.get("douban_group", "topic_index_start"))
-proxy_dict={'http://113.11.198.163:2223/',
+proxy_dict=['http://113.11.198.163:2223/',
 			'http://113.11.198.164:2223/',
 			'http://113.11.198.165:2223/',
 			'http://113.11.198.166:2223/',
 			'http://113.11.198.167:2223/',
 			'http://113.11.198.168:2223/',
-			'http://113.11.198.169:2223/'
-			}
+			'http://113.11.198.169:2223/',
+			]
 #proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
 #113.11.198.[163-169] 2223
 proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
