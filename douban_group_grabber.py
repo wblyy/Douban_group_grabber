@@ -32,7 +32,7 @@ proxy_dict=['http://113.11.198.163:2223/',
 #proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
 #113.11.198.[163-169] 2223
 proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
-proxy_auth_handler.add_password('realm', 'host', 'username', 'password')
+proxy_auth_handler.add_password('realm', 'host', 'root', 'kingate')
 proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
 #opener = urllib2.build_opener(proxy_handler, proxy_auth_handler)
 # This time, rather than install the OpenerDirector, we use it directly:
@@ -83,6 +83,7 @@ for  url_index in xrange(url_index_start,6520,20):
 					while is_next_comment:
 						is_next_comment=False
 						proxy_handler = urllib2.ProxyHandler({'http':random.choice(proxy_dict)})
+						print random.choice(proxy_dict)}
 						topic_url='http://www.douban.com/group/topic/'+topic_id+'/?start='+str(topic_index)
 						#http://www.douban.com/group/topic/1994213/?start=100
 						topic_view=urllib2.build_opener(proxy_handler,proxy_auth_handler).open(topic_url).read()
