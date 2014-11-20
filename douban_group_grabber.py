@@ -105,6 +105,7 @@ for  url_index in xrange(url_index_start,6520,20):
 
 	except Exception, e:
 		print e
+		url_index=url_index-1
 		#time.sleep(5)
 
 #http://www.douban.com/group/explore?start=20&tag=%E9%9F%B3%E4%B9%90
