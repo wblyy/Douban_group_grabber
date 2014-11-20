@@ -49,6 +49,7 @@ for  url_index in xrange(url_index_start,6520,20):
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
 		print page_url
 		msg=urllib2.build_opener(urllib2.ProxyHandler(choice(proxy_dict)),proxy_auth_handler).open(page_url).read()
+		print choice(proxy_dict)
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
 		print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
