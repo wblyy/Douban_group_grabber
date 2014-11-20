@@ -33,7 +33,7 @@ proxy_dict=['http://113.11.198.163:2223/',
 #113.11.198.[163-169] 2223
 proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
 proxy_auth_handler.add_password('realm', 'host', 'username', 'password')
- 
+proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
 #opener = urllib2.build_opener(proxy_handler, proxy_auth_handler)
 # This time, rather than install the OpenerDirector, we use it directly:
 #f = urllib2.build_opener(proxy_handler, proxy_auth_handler).open('http://www.douban.com').read()
@@ -49,8 +49,8 @@ for  url_index in xrange(url_index_start,6520,20):
 		#time.sleep(2)
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
 		print page_url
-		msg=urllib2.build_opener(urllib2.ProxyHandler({'http':random.choice(proxy_dict)}),proxy_auth_handler).open(page_url).read()
-		#print proxy_dict[random.randint(0,len(proxy_dict))]
+		msg=urllib2.build_opener(proxy_handler,proxy_auth_handler).open(page_url).read()
+		print random.choice(proxy_dict)
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
 		print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
@@ -69,9 +69,10 @@ for  url_index in xrange(url_index_start,6520,20):
 
 
 
-				group_view=urllib2.build_opener(urllib2.ProxyHandler({'http':random.choice(proxy_dict)}),proxy_auth_handler).open(group_url).read()
+				group_view=urllib2.build_opener(proxy_handler,proxy_auth_handler).open(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
 				for topic_id_index in xrange(0,len(topic)):
+					
 					conf.set("douban_group", "topic_id_start", topic[topic_id_index])
 					conf.write(open("douban_group.conf", "w"))  
 
@@ -81,9 +82,10 @@ for  url_index in xrange(url_index_start,6520,20):
 					topic_index=topic_index_start
 					while is_next_comment:
 						is_next_comment=False
+						proxy_handler = urllib2.ProxyHandler({'http':random.choice(proxy_dict)})
 						topic_url='http://www.douban.com/group/topic/'+topic_id+'/?start='+str(topic_index)
 						#http://www.douban.com/group/topic/1994213/?start=100
-						topic_view=urllib2.build_opener(urllib2.ProxyHandler({'http':random.choice(proxy_dict)}),proxy_auth_handler).open(topic_url).read()
+						topic_view=urllib2.build_opener(proxy_handler,proxy_auth_handler).open(topic_url).read()
 						#print choice(proxy_dict)
 						comment=re.findall('<p class="">(.*?)</p>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
 						comment_time=re.findall('<span class="pubtime">(.*?)</span>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
