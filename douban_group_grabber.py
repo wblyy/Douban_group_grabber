@@ -26,7 +26,7 @@ for  url_index in xrange(0,6520,20):
 			is_next_page=True
 			while is_next_page:
 				is_next_page=False
-				time.sleep(10)
+				#time.sleep(10)
 				group_url='http://www.douban.com/group/'+group_id+'/discussion?start='+str(group_index)
 				group_view=urllib2.urlopen(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
@@ -48,8 +48,8 @@ for  url_index in xrange(0,6520,20):
 						
 						for index in range (0,len(comment)):
 							#print comment[index].decode('utf-8'),comment_time[index]
-							#dbV2.insert_douban_data(comment[index].decode('utf-8'),comment_time[index],topic_id,group_id)
-							print 'group_id:',group_id,'group_index:',group_index,'topic_id:',topic_id,'topic_index',topic_index,comment[index].decode('utf-8'),comment_time[index]
+							dbV2.insert_douban_data(comment[index].decode('utf-8'),comment_time[index],topic_id,group_id)
+							#print 'group_id:',group_id,'group_index:',group_index,'topic_id:',topic_id,'topic_index',topic_index,comment[index].decode('utf-8'),comment_time[index]
 							#http://www.douban.com/group/people/
 						if 'http://www.douban.com/group/people/' in topic_view:
 							is_next_comment=True
@@ -63,6 +63,6 @@ for  url_index in xrange(0,6520,20):
 
 	except Exception, e:
 		print e
-		time.sleep(5)
+		#time.sleep(5)
 
 #http://www.douban.com/group/explore?start=20&tag=%E9%9F%B3%E4%B9%90
