@@ -19,6 +19,16 @@ group_id_start=conf.get("douban_group", "group_id_start")
 topic_id_start=conf.get("douban_group", "topic_id_start")
 group_index_start=int(conf.get("douban_group", "group_index_start"))
 topic_index_start=int(conf.get("douban_group", "topic_index_start"))
+proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
+#113.11.198.[163-169] 2223
+
+proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
+proxy_auth_handler.add_password('realm', 'host', 'username', 'password')
+ 
+#opener = urllib2.build_opener(proxy_handler, proxy_auth_handler)
+# This time, rather than install the OpenerDirector, we use it directly:
+f = urllib2.build_opener(proxy_handler, proxy_auth_handler).open('http://www.douban.com').read()
+print f
 
 #douban_group.conf
 
@@ -30,7 +40,7 @@ for  url_index in xrange(url_index_start,6520,20):
 		#time.sleep(2)
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
 		print page_url
-		msg=urllib2.urlopen(page_url).read()
+		msg=urllib2.build_opener(proxy_handler, proxy_auth_handler).open(page_url).read()
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
 		print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
@@ -49,7 +59,7 @@ for  url_index in xrange(url_index_start,6520,20):
 
 
 
-				group_view=urllib2.urlopen(group_url).read()
+				group_view=urllib2.build_opener(proxy_handler, proxy_auth_handler).open(group_url).read()
 				topic=re.findall('http://www.douban.com/group/topic/(.*?)/" title="'.decode('utf-8').encode('utf-8'), group_view, re.DOTALL)
 				for topic_id_index in xrange(topic.index(topic_id_start),len(topic)):
 					conf.set("douban_group", "topic_id_start", topic[topic_id_index])
@@ -63,7 +73,7 @@ for  url_index in xrange(url_index_start,6520,20):
 						is_next_comment=False
 						topic_url='http://www.douban.com/group/topic/'+topic_id+'/?start='+str(topic_index)
 						#http://www.douban.com/group/topic/1994213/?start=100
-						topic_view=urllib2.urlopen(topic_url).read()
+						topic_view=urllib2.build_opener(proxy_handler, proxy_auth_handler).open(topic_url).read()
 						comment=re.findall('<p class="">(.*?)</p>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
 						comment_time=re.findall('<span class="pubtime">(.*?)</span>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
 									
