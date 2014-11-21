@@ -11,13 +11,13 @@ proxy_dict=['http://113.11.198.163:2223/',
 			]
 
 
-r = requests.get("http://www.douban.com",proxies={"http": random.choice(proxy_dict)})
-print(r.text)
+r = requests.get("http://www.douban.com/group/topic/67825487/?start=0",proxies={"http": random.choice(proxy_dict)})
+print r
 
-r = requests.get("http://www.baidu.com", 
+r = requests.get("http://www.douban.com/group/topic/67825487/?start=0", 
                  proxies={"http": random.choice(proxy_dict)})
-print(r.text)
+print r
 
-r = requests.get("http://www.sina.com", 
+r = requests.get("http://www.douban.com/group/topic/67825487/?start=0", 
                  proxies={"http": random.choice(proxy_dict)})
-print(r.text)
+print r
