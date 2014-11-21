@@ -31,7 +31,7 @@ proxy_dict=['http://113.11.198.163:2223/',
 			'http://113.11.198.169:2223/',
 			]
 
-for IP in mydb.get_fast_IP():
+for IP in myIPdb.get_fast_IP():
 		fast_IP='http://'+str(IP[0])+':'+str(IP[1])+'/'
         	proxy_dict.append(fast_IP) 
 
