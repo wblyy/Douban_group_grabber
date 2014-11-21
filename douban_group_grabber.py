@@ -89,7 +89,7 @@ for  url_index in xrange(url_index_start,6520,20):
 					topic_id=topic[topic_id_index]
 					print 'group_id:',group_id,'group_index:',group_index,'topic_id:',topic_id
 					is_next_comment=True
-					topic_index=topic_index_start
+					topic_index=0
 					while is_next_comment:
 						is_next_comment=False
 						#proxy_handler_random = urllib2.ProxyHandler({"http":random.choice(proxy_dict)})
