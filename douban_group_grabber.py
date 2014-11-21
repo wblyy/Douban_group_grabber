@@ -99,7 +99,7 @@ for  url_index in xrange(url_index_start,6520,20):
 						
 						for index in range (0,len(comment)):
 							#print comment[index].decode('utf-8'),comment_time[index]
-							dbV2.insert_douban_data(comment[index].decode('gbk'),comment_time[index],topic_id,group_id)
+							dbV2.insert_douban_data(comment[index],comment_time[index],topic_id,group_id)
 							print comment_time			
 
 						if 'http://www.douban.com/group/people/' in topic_view:
