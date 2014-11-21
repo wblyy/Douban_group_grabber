@@ -1,4 +1,4 @@
- # encoding: UTF-8
+﻿ # encoding: UTF-8
 import ConfigParser
 import re
 import urllib2
@@ -33,7 +33,7 @@ proxy_dict=['http://113.11.198.163:2223/',
 
 for IP in mydb.get_fast_IP():
 		fast_IP='http://'+str(IP[0])+':'+str(IP[1])+'/'
-        proxy_dict.append(fast_IP) 
+        	proxy_dict.append(fast_IP) 
 
 print proxy_dict
 #proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
