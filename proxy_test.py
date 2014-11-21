@@ -11,10 +11,10 @@ proxy_dict=['http://113.11.198.163:2223/',
 			]
 
 
-r = requests.get("http://www.douban.com/group/topic/67825487/?start=0",proxies={"http": random.choice(proxy_dict)})
+r = requests.get("http://www.douban.com/group/explore?start=0&tag=%E9%9F%B3%E4%B9%90",proxies={"http": random.choice(proxy_dict)})
 print r
 
-r = requests.get("http://www.douban.com/group/topic/67825487/?start=0", 
+r = requests.get("http://www.douban.com/group/Eason/discussion?start=0", 
                  proxies={"http": random.choice(proxy_dict)})
 print r
 
