@@ -11,5 +11,5 @@ proxy_dict=['http://113.11.198.163:2223/',
 
 
 r = requests.get("http://www.douban.com", 
-                 proxies={"http": "http://61.233.25.166:80"})
+                 proxies={"http": "http://113.11.198.164:2223"})
 print(r.text)
