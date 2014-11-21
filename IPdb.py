@@ -12,7 +12,7 @@ class Mydb(object):
 
     @property
     def db(self):
-        return MySQLdb.connect("54.223.153.21", self.user, self.passwd, self.dbname, charset='utf8')
+        return MySQLdb.connect("soniegg.oicp.net", self.user, self.passwd, self.dbname, charset='utf8')
 
     @classmethod
     def instance(cls):
