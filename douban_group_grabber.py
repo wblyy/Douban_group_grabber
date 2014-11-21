@@ -50,25 +50,25 @@ for  url_index in xrange(url_index_start,6520,20):
 	try:
 		#time.sleep(2)
 		page_url='http://www.douban.com/group/explore?start='+str(url_index)+'&tag=%E9%9F%B3%E4%B9%90'
-		print page_url
+		#print page_url
 		msg=requests.get(page_url,proxies={"http": random.choice(proxy_dict)}).text
 		#urllib2.build_opener(proxy_handler,proxy_auth_handler).open(page_url).read()
-		print random.choice(proxy_dict)
+		#print random.choice(proxy_dict)
 		group=re.findall('<a class="nbg" href="http://www.douban.com/group/(.*?)/" onclick="'.decode('utf-8').encode('utf-8'), msg, re.DOTALL)
-		print group
+		#print group
 		for group_id_index in xrange(group.index(group_id_start),len(group)):
 			conf.set("douban_group", "group_id_start", group[group_id_index])
 			conf.write(open("douban_group.conf", "w"))  
 
 			group_id=group[group_id_index]
-			print group_id.decode('utf-8').encode('utf-8')
+			#print group_id.decode('utf-8').encode('utf-8')
 			group_index=group_index_start
 			is_next_page=True
 			while is_next_page:
 				is_next_page=False
 				#time.sleep(10)
 				group_url='http://www.douban.com/group/'+group_id+'/discussion?start='+str(group_index)
-				print group_url
+				#print group_url
 
 
 
@@ -100,7 +100,7 @@ for  url_index in xrange(url_index_start,6520,20):
 						for index in range (0,len(comment)):
 							#print comment[index].decode('utf-8'),comment_time[index]
 							dbV2.insert_douban_data(comment[index],comment_time[index],topic_id,group_id)
-							print comment_time			
+							#print comment_time			
 
 						if 'http://www.douban.com/group/people/' in topic_view:
 							is_next_comment=True
@@ -126,6 +126,7 @@ for  url_index in xrange(url_index_start,6520,20):
 
 	except Exception, e:
 		print e
+		url_index=url_index-1
 		#url_index=url_index-1
 		#time.sleep(5)
 
