@@ -96,10 +96,11 @@ for  url_index in xrange(url_index_start,6520,20):
 						#print choice(proxy_dict)
 						comment=re.findall('<p class="">(.*?)</p>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
 						comment_time=re.findall('<span class="pubtime">(.*?)</span>'.decode('utf-8').encode('utf-8'), topic_view, re.DOTALL)
-						print comment_time			
+						
 						for index in range (0,len(comment)):
 							#print comment[index].decode('utf-8'),comment_time[index]
-							dbV2.insert_douban_data(comment[index].decode('utf-8'),comment_time[index],topic_id,group_id)
+							dbV2.insert_douban_data(comment[index].decode('gbk'),comment_time[index],topic_id,group_id)
+							print comment_time			
 
 						if 'http://www.douban.com/group/people/' in topic_view:
 							is_next_comment=True
