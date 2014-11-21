@@ -1,9 +1,4 @@
  # encoding: UTF-8
-#first_group='http://www.douban.com/group/'+group_id+'/discussion?start=0'
-#			first_group_view=urllib2.urlopen(first_group).read()
-#			page_view=re.findall(('<a href="http://www.douban.com/group/'+group_id+'/discussion?start=(.*?)" >').decode('utf-8').encode('utf-8'), first_group_view, re.DOTALL)
-			#pagenumber=page_view
-#			print 'page_view=',page_view
 import ConfigParser
 import re
 import urllib2
@@ -13,8 +8,10 @@ from mydbV2 import MydbV2
 from random import choice
 import random
 import requests
+from IPdb import IPdb
 
 dbV2 = MydbV2()
+myIPdb=IPdb()
 conf = ConfigParser.ConfigParser()
 conf.read("douban_group.conf")
 url_index_start=int(conf.get("douban_group", "url_index_start"))
@@ -22,6 +19,9 @@ group_id_start=conf.get("douban_group", "group_id_start")
 topic_id_start=conf.get("douban_group", "topic_id_start")
 group_index_start=int(conf.get("douban_group", "group_index_start"))
 topic_index_start=int(conf.get("douban_group", "topic_index_start"))
+
+
+
 proxy_dict=['http://113.11.198.163:2223/',
 			#r'http://113.11.198.164:2223/',
 			#r'http://113.11.198.165:2223/',
@@ -30,6 +30,12 @@ proxy_dict=['http://113.11.198.163:2223/',
 			'http://113.11.198.168:2223/',
 			'http://113.11.198.169:2223/',
 			]
+
+for IP in mydb.get_fast_IP():
+		fast_IP='http://'+str(IP[0])+':'+str(IP[1])+'/'
+        proxy_dict.append(fast_IP) 
+
+print proxy_dict
 #proxy_handler = urllib2.ProxyHandler({'http': 'http://113.11.198.163:2223/'})
 #113.11.198.[163-169] 2223
 proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
