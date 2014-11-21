@@ -14,3 +14,11 @@ proxy_dict=['http://113.11.198.163:2223/',
 r = requests.get("http://www.douban.com", 
                  proxies={"http": random.choice(proxy_dict)})
 print(r.text)
+
+r = requests.get("http://www.baidu.com", 
+                 proxies={"http": random.choice(proxy_dict)})
+print(r.text)
+
+r = requests.get("http://www.sina.com", 
+                 proxies={"http": random.choice(proxy_dict)})
+print(r.text)
